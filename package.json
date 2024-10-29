@@ -1,0 +1,15 @@
+{
+  "name": "feed",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node scraper.js",
+    "build": "node scraper.js"
+  },
+  "dependencies": {
+    "feed": "^4.2.2",
+    "cheerio": "^1.0.0-rc.12",
+    "node-fetch": "^3.3.2",
+    "yaml": "^2.3.4"
+  }
+}

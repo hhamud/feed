@@ -1,0 +1,10 @@
+sites:
+  - name: "Vitalik Blog"
+    url: "https://vitalik.eth.limo/"
+    selector: "li"
+    titleSelector: ".post-link > href"
+    linkSelector: ".post-link"
+    contentSelector: ""
+    dateSelector: ".date"
+outputDir: "public"
+
