@@ -5,6 +5,6 @@ sites:
     titleSelector: ".post-link > href"
     linkSelector: ".post-link"
     contentSelector: ""
-    dateSelector: ".date"
+    dateSelector: ".post-meta"
 outputDir: "public"
 
