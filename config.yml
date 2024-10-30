@@ -2,9 +2,9 @@ sites:
   - name: "Vitalik Blog"
     url: "https://vitalik.eth.limo/"
     selector: "li"
-    titleSelector: ".post-link > href"
+    titleSelector: ".post-link"
     linkSelector: ".post-link"
-    contentSelector: ""
+    contentSelector: ".container-fluid.markdown-body.comment-enabled"
     dateSelector: ".post-meta"
 outputDir: "public"
 

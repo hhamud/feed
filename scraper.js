@@ -1,4 +1,3 @@
-
 // scraper.js
 import fs from 'fs/promises';
 import path from 'path';
@@ -19,13 +18,25 @@ async function scrapeWebsite(site) {
     const $ = cheerio.load(html);
     const items = [];
 
-    $(site.selector).each((i, element) => {
+    for (const element of $(site.selector).toArray()) {
       const title = $(element).find(site.titleSelector).text().trim();
       const link = new URL(
         $(element).find(site.linkSelector).attr('href'),
         site.url
       ).toString();
-      const content = $(element).find(site.contentSelector).html();
+
+      // Fetch the content from the link URL
+      let content = '';
+      try {
+        const contentResponse = await fetch(link);
+        const contentHtml = await contentResponse.text();
+        const $content = cheerio.load(contentHtml);
+        content = $content(site.contentSelector).html();
+        console.log(content);
+      } catch (contentError) {
+        console.error(`Error fetching content from ${link}:`, contentError);
+      }
+
       const dateStr = $(element).find(site.dateSelector).text().trim();
       const date = new Date(dateStr);
 
@@ -35,7 +46,7 @@ async function scrapeWebsite(site) {
         content,
         date: isNaN(date.getTime()) ? new Date() : date
       });
-    });
+    }
 
     return items;
   } catch (error) {
